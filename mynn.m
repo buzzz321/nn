@@ -103,6 +103,17 @@ function retVal = finit_diff(model, trainInput, trainOutput, eps)
   retVAl = model;
 end
 
+function [retModel retGrad] = learn(model, mygrad, rate)
+  model.w1 = model.w1 - mygrad.w1 * rate;
+  model.b1 = model.b1 -= mygrad.b1 * rate;
+
+  model.w2 = model.w2 - mygrad.w2 * rate;
+  model.b2 = model.b2 -= mygrad.b2 * rate;
+
+  retModel = model;
+  retGrad = mygrad;
+end
+
 Xor=makestruct();
 
 trainData = [ 0, 0, 0;
